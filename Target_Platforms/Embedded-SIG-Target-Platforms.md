@@ -30,6 +30,7 @@ The following hardware instructions sets should be supported:
 2. RISC-V 32-bit + 64-bit
 3. ARM 32-bit + 64-bit
 4. X86-64 bit
+5. MIPS 32-bit
 
 ## 2. MMU / MPU Support
 
