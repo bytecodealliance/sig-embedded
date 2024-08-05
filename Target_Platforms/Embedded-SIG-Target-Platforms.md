@@ -85,6 +85,15 @@ The following table maps the ISA, memory protection support, RAM and Storage req
 | x86-64    | MPU       | ?    | ?       |      | Excluded |
 | x86-64    | MMU       | ?    | ?       |      |          |
 
+### Reasoning for target platform provided processor proposal
+It was looked at the Arm32/Arm64 processors available
+- STM32F0 (Cortex M0) is a contrained device with an 32-bit arm achritecture that has no MPU. It is utilized in various cost sensitive application and shall represent a platform for brownfield support. Remark: The Cortex-mO is mostly replaced by m0+ which includes the MPU capabilities.
+- STM32F7 (Cortex-M7) is a constrained device with an 32-bit arm architecture. It is utilized in various performance sensitive application and shall represent a platform for brownfield support utilizing realtime OS.
+- STM32U5 (Cortex-M33) is a constrained device with a 32-bit arm architecture. It is designed for low power application and shall represent a platform for greenfield application utilizing realtime OS with an enhanced cybersecurity feature set.
+- IMX6ULL (Cortex -A7) is an embedded device with a 32-bit arm architecture. It is designed as an application processor and shall represent a platform for brownfield application utilizing embedded linux. 
+- IMX8M (Cortex-A53) is an embedded device with a 64-bit arm architecture. It is designed as an application processor and shall represent a platform for brownfield and greenfield application utilizing embedded linux. 
+- IMX8Plus (Cortex-A53) is an embeddedd device with a 64-bit architecture. It is designed as an application processor including a neural network and shall represent a platform for greenfield application if an NPU is needed.
+
  
 
 ## 6. Runtime Support
