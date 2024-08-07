@@ -6,7 +6,7 @@ This document defines the minimum hardware and software platforms that all contr
 
 ## Intended Audience
 
-This document is intended to be read and contributed to by members of the Embedded Special Interest Group. 
+This document is intended to be read and contributed to by members of the Embedded Special Interest Group.
 
 ## Criteria of Device and Software Selection
 
@@ -24,39 +24,46 @@ In order to produce this document and narrow down the platforms selections we wi
 6. Define the WebAssembly Runtimes that should be considered on the chosen platforms
 
 ## 1. Hardware Instruction Set Requirements (ISA)
-The following hardware instructions sets should be supported:
+
+The following hardware instructions sets __must__ be supported:
+
+1. ARM 32-bit + 64-bit
+    - Cortex-M
+    - Cortex-A
+2. X86-64 bit
+3. RISC-V 32-bit + 64-bit
+
+The following hardware instructions sets __should__ be supported:
 
 1. Xtensa
-2. RISC-V 32-bit + 64-bit
-3. ARM 32-bit + 64-bit
-4. X86-64 bit
+2. Arc ?
+    - [ ] What is the ISA for ARC? Does it need to be included in the list?
 
 ## 2. MMU / MPU Support
 
-MMU / MPU support is optional. It should be possible to run on devices which do not have an MMU / MPU is not present. 
+MPU support is optional. It should be possible to run on devices which do not have an MPU is not present.
 
-**NB:** This may mean that some features like shared memory, or the forth coming `mmap` support from core-wasm may not be possible to support without a large performance penalty. 
+MMU support is not necessary. The proposed solutions from the e-sig will not consider MMUs.
 
-
+__NB:__ This may mean that some features like shared memory, or the forth coming `mmap` support from core-wasm may not be possible to support without a large performance penalty.
 
 ## 3. Minimum RAM and Storage Requirements
 
 *TODO: This has not been discussed*
 
-
-
 ## 4. Required RTOS / Operating System Requirements
-The following RTOS / Operating Systems should be supported:
+
+The following RTOS / Operating Systems __must__ be supported:
 
 1. Zephyr
 2. FreeRTOS
-3. ESP-IDF
-4. NuttX
-5. Eclipse Thread-X
-6. Linux RT Patch
-7. Windows
+3. Linux (RT Patch)
 
+The following RTOS / Operating Systems __should__ be supported:
 
+1. NuttX
+2. Windows
+3. Android
 
 ## 5. Publicly Available Hardware Platforms
 
@@ -84,8 +91,6 @@ The following table maps the ISA, memory protection support, RAM and Storage req
 | x86-64    | None      | ?    | ?       |      | Excluded |
 | x86-64    | MPU       | ?    | ?       |      | Excluded |
 | x86-64    | MMU       | ?    | ?       |      |          |
-
- 
 
 ## 6. Runtime Support
 
