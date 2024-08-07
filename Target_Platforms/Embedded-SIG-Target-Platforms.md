@@ -38,6 +38,7 @@ The following hardware instructions sets __should__ be supported:
 1. Xtensa
 2. Arc ?
     - [ ] What is the ISA for ARC? Does it need to be included in the list?
+3. MIPS 32-bit
 
 ## 2. MMU / MPU Support
 
