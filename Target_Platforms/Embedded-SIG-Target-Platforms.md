@@ -41,7 +41,11 @@ MMU / MPU support is optional. It should be possible to run on devices which do 
 
 ## 3. Minimum RAM and Storage Requirements
 
-*TODO: This has not been discussed*
+Software the E-SIG focuses on should be possible to run with the following RAM and Storage requirements: 
+
+**RAM**: 512kb
+
+**Storage**: 1Mb of Non-Volatile storage 
 
 
 
