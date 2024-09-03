@@ -87,9 +87,19 @@ While Linux with a RT kernel patch applied is often a Deployment Platform for la
 
 The following RTOS / Operating Systems should be supported:
 
-1. Zephyr
-2. FreeRTOS
-3. NuttX
+* Zephyr
+* FreeRTOS
+* NuttX
+
+
+
+#### Game Console Platforms
+
+The XBox (Windows) and PlayStation (FreeBSD) are examples of high end embedded platforms which the E-SIG should target. This is different from targeting a game engine, like Unity, but focusing on targeting system integration. In targeting games consoles the E-SIG would also have a opportunity to consider how high speed access can be given to hardware peripherals like graphics accelerators and storage / decompression accelerators, focusing on data throughput and application latency.
+
+It is noted that access to the Development Kits for XBox and PlayStation can be expensive.
+
+
 
 ### Development Platforms (Operating Systems)
 
