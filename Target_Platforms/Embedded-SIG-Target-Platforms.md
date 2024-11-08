@@ -40,6 +40,7 @@ In order to produce this document and narrow down the platforms selections we wi
 6. Define the WebAssembly Runtimes that should be considered on the chosen platforms
 
 ## 1. Hardware Instruction Set Requirements (ISA)
+
 The set of ISAs the SIG should address are broken down into two groups, a "Development Platform" - the platform a developer uses to create software, and a "Deployed Platform" the platform upon which the final software product will run.
 
 ### Deployed Platforms (ISA)
@@ -72,16 +73,13 @@ Software the E-SIG focuses on should be possible to run with the following RAM a
 
 **Storage**: 1Mb of Non-Volatile storage 
 
-
-
 ## 4. Required RTOS / Operating System Requirements
+
 The list of operating systems the imbedded SIG should address is broken down into two groups, a "Development Platform" - the platform a developer uses to create software, and a "Deployed Platform" the platform upon which the final software product will run. There are many other groups which address desktop and server operating systems. The Embedded SIG should focus on the operating systems which are needed for the embedded ecosystem which would not be addressed by another other community. These will predominantly be real time operating systems (RTOS). 
 
 ### A Discussion on Real Time Linux
 
 While Linux with a RT kernel patch applied is often a Deployment Platform for larger embedded applications, from the WebAssembly runtime point of view, there is little difference between Linux with a real time patch, and Linux without a real time patch. Indeed Linux is a operating system which has a lot of support across the WebAssembly ecosystem.
-
-
 
 ### Deployment Platforms (Operating Systems)
 
@@ -91,15 +89,11 @@ The following RTOS / Operating Systems should be supported:
 * FreeRTOS
 * NuttX
 
-
-
 #### Game Console Platforms
 
 The XBox (Windows) and PlayStation (FreeBSD) are examples of high end embedded platforms which the E-SIG should target. This is different from targeting a game engine, like Unity, but focusing on targeting system integration. In targeting games consoles the E-SIG would also have a opportunity to consider how high speed access can be given to hardware peripherals like graphics accelerators and storage / decompression accelerators, focusing on data throughput and application latency.
 
 It is noted that access to the Development Kits for XBox and PlayStation can be expensive.
-
-
 
 ### Development Platforms (Operating Systems)
 
@@ -108,44 +102,29 @@ The following operating systems should be supported as development environments:
 1. Linux 
 2. Windows
 
-
-
 ## 5. Publicly Available Hardware Platforms
-The following table maps the ISA, memory protection support, RAM and Storage requirements with a reference implementation. This table will also highlight the platforms, or combination of platform requirements, which are not supported, e.g. an x86-64 bit processor without an MMU as this doesn't exist in the market place, or running Linux on a device without an MMU.
 
-*NB: This might be better in an excel / spreadsheet*
+It is important to provide all stake holders with a quick list of targert development boards and hardware they can purchase and work on. The following table outlines example hardware which most closely matches the requirements detailed above for each major ISA. This is not an exhaustive list, and of course any hardware which meets the requirements detailed above should be suitable. However, this should help those wishing to quickly purchase hardware and get started contributing.
 
-| ISA       | MMU / MPU | RAM  | Storage | OS   | Board    |
-| --------- | --------- | ---- | ------- | ---- | -------- |
-| Xtensa    | None      | ?    | ?       |      |          |
-| Xtensa    | MPU       | ?    | ?       |      |          |
-| Xtensa    | MMU       | ?    | ?       |      |          |
-| RISC-V 32 | None      | ?    | ?       |      |          |
-| RISC-V 32 | MPU       | ?    | ?       |      |          |
-| RISC-V 32 | MMU       | ?    | ?       |      |          |
-| RISC-V 64 | None      | ?    | ?       |      |          |
-| RISC-V 64 | MPU       | ?    | ?       |      |          |
-| RISC-V 64 | MMU       | ?    | ?       |      |          |
-| ARM 32    | None      | ?    | ?       |      |          |
-| ARM 32    | MPU       | ?    | ?       |      |          |
-| ARM 32    | MMU       | ?    | ?       |      |          |
-| ARM 64    | None      | ?    | ?       |      |          |
-| ARM 64    | MPU       | ?    | ?       |      |          |
-| ARM 64    | MMU       | ?    | ?       |      |          |
-| x86-64    | None      | ?    | ?       |      | Excluded |
-| x86-64    | MPU       | ?    | ?       |      | Excluded |
-| x86-64    | MMU       | ?    | ?       |      |          |
+| ISA       | Board / Purchasble Hardware                                                            |
+| --------- | -------------------------------------------------------------------------------------- |
+| Xtensa    | [ESP32-S3-BOX-3](https://www.espressif.com/en/news/ESP32-S3-BOX-3)                     |
+| RISC-V 32 | *N/A - Suggestions welcome*                                                            |
+| ARM 32    | [STM32H747AG](https://www.st.com/en/microcontrollers-microprocessors/stm32h747ag.html) |
+| RISC-V 64 | [PINE64 Ox64](https://pine64.org/devices/ox64/)                                        |
+| ARM 64    | [Raspberry Pi 3](https://www.raspberrypi.com/products/raspberry-pi-3-model-b/)         |
+| x86-64    | [Lattepanda-v1](https://www.lattepanda.com/lattepanda-v1)                              |
 
 ### Reasoning for target platform provided processor proposal
+
 It was looked at the Arm32/Arm64 processors available
+
 - STM32F0 (Cortex M0) is a contrained device with an 32-bit arm achritecture that has no MPU. It is utilized in various cost sensitive application and shall represent a platform for brownfield support. Remark: The Cortex-mO is mostly replaced by m0+ which includes the MPU capabilities.
 - STM32F7 (Cortex-M7) is a constrained device with an 32-bit arm architecture. It is utilized in various performance sensitive application and shall represent a platform for brownfield support utilizing realtime OS.
 - STM32U5 (Cortex-M33) is a constrained device with a 32-bit arm architecture. It is designed for low power application and shall represent a platform for greenfield application utilizing realtime OS with an enhanced cybersecurity feature set.
 - IMX6ULL (Cortex -A7) is an embedded device with a 32-bit arm architecture. It is designed as an application processor and shall represent a platform for brownfield application utilizing embedded linux. 
 - IMX8M (Cortex-A53) is an embedded device with a 64-bit arm architecture. It is designed as an application processor and shall represent a platform for brownfield and greenfield application utilizing embedded linux. 
 - IMX8Plus (Cortex-A53) is an embeddedd device with a 64-bit architecture. It is designed as an application processor including a neural network and shall represent a platform for greenfield application if an NPU is needed.
-
- 
 
 ## 6. Runtime Support
 
@@ -154,3 +133,4 @@ The following runtimes should be supported:
 1. WAMR
 2. Wasmtime
 3. Wazero
+4. WasmEdge
