@@ -106,21 +106,23 @@ The following operating systems should be supported as development environments:
 
 It is important to provide all stake holders with a quick list of targert development boards and hardware they can purchase and work on. The following table outlines example hardware which most closely matches the requirements detailed above for each major ISA. This is not an exhaustive list, and of course any hardware which meets the requirements detailed above should be suitable. However, this should help those wishing to quickly purchase hardware and get started contributing.
 
-| ISA       | Board / Purchasble Hardware                                                            |
-| --------- | -------------------------------------------------------------------------------------- |
-| Xtensa    | [ESP32-S3-BOX-3](https://www.espressif.com/en/news/ESP32-S3-BOX-3)                     |
-| RISC-V 32 | *N/A - Suggestions welcome*                                                            |
-| ARM 32    | [STM32H747AG](https://www.st.com/en/microcontrollers-microprocessors/stm32h747ag.html) |
-| RISC-V 64 | [PINE64 Ox64](https://pine64.org/devices/ox64/)                                        |
-| ARM 64    | [Raspberry Pi 3](https://www.raspberrypi.com/products/raspberry-pi-3-model-b/)         |
-| x86-64    | [Lattepanda-v1](https://www.lattepanda.com/lattepanda-v1)                              |
+| ISA       | Board / Purchasable Hardware                                 | Memory Management Features                                   |
+| --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Xtensa    | [ESP32-S3-BOX-3](https://www.espressif.com/en/news/ESP32-S3-BOX-3) | MPU present [Tensilica Xtensa LX7 Processor Datasheet](https://www.cadence.com/en_US/home/resources/datasheets/xtensa-lx7-processor-ds.html) |
+| RISC-V 32 | ESP32-C6<br />[Link to purchase](https://www.amazon.com/Espressif-ESP32-C6-DevKitC-1-N8-Development-Board/dp/B0BRMSDR4R/ref=sr_1_3?crid=2QD4HJSP4L9CW&dib=eyJ2IjoiMSJ9.a_xVv1j6XbYtUIT-zg9XYuWCFx_EhGMEfhlgxpq0a6wCLErBF3O88PxHCFGN6NGAz0F90ByPvl5MD522ox6Xk-s-dStG0WIVLe7bHHbxiorH--ZffRjgQjLxuQ6PhgOsWnw4m_d_AgKvIo4ITnD9ts0ya_lxePdIYAbUWRMZPkTwFCWgUM8AjNrlk_Um77AaOnJMREP8rPJjdZJQx7qIC6tp3x0r2x7TNp3w-oIPg0Y.IgJ5e3szJD0CcLhJrcGtfinPOgDqq_MSuggStRTsPZg&dib_tag=se&keywords=esp32-c6-devkitc-1&qid=1736892040&sprefix=esp32-c6%2Bdevkitc-1%2Caps%2C210&sr=8-3&th=1)                           | This has PMP (Physical Memory Protection)<br />[ESP32-C6 Series Datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf)<br/>[CPU Technical Reference Manual](https://www.espressif.com/sites/default/files/documentation/esp32-c6_technical_reference_manual_en.pdf#riscvcpu) |
+| ARM 32    | [STM32H747AG](https://www.st.com/en/microcontrollers-microprocessors/stm32h747ag.html) | MPU present [link](https://developer.arm.com/documentation/ddi0489/latest/introduction/about-the-cortex-m7-processor/features) |
+| RISC-V 64 | [PINE64 Ox64](https://pine64.org/devices/ox64/)              | MMU present ([RISC-V Ox64 BL808 SBC: Sv39 Memory Management Unit](https://lupyuen.codeberg.page/articles/mmu.html) |
+| ARM 64    | [Raspberry Pi 3](https://www.raspberrypi.com/products/raspberry-pi-3-model-b/) | MMU present                                                  |
+| x86-64    | [Lattepanda-v1](https://www.lattepanda.com/lattepanda-v1)    | MMU present                                                  |
+
+
 
 ### Reasoning for target platform provided processor proposal
 
 It was looked at the Arm32/Arm64 processors available
 
-- STM32F0 (Cortex M0) is a contrained device with an 32-bit arm achritecture that has no MPU. It is utilized in various cost sensitive application and shall represent a platform for brownfield support. Remark: The Cortex-mO is mostly replaced by m0+ which includes the MPU capabilities.
-- STM32F7 (Cortex-M7) is a constrained device with an 32-bit arm architecture. It is utilized in various performance sensitive application and shall represent a platform for brownfield support utilizing realtime OS.
+- STM32F0 (Cortex M0) is a constrained device with an 32-bit arm architecture that has no MPU. It is utilized in various cost sensitive application and shall represent a platform for brownfield support. Remark: The Cortex-mO is mostly replaced by m0+ which includes the MPU capabilities.
+- STM32F7 (Cortex-M7) is a constrained device with an 32-bit arm architecture. It is utilized in various performance sensitive application and shall represent a platform for brownfield support utilizing real-time OS.
 - STM32U5 (Cortex-M33) is a constrained device with a 32-bit arm architecture. It is designed for low power application and shall represent a platform for greenfield application utilizing realtime OS with an enhanced cybersecurity feature set.
 - IMX6ULL (Cortex -A7) is an embedded device with a 32-bit arm architecture. It is designed as an application processor and shall represent a platform for brownfield application utilizing embedded linux. 
 - IMX8M (Cortex-A53) is an embedded device with a 64-bit arm architecture. It is designed as an application processor and shall represent a platform for brownfield and greenfield application utilizing embedded linux. 
