@@ -1,12 +1,32 @@
 # WASI / Wasm System Structure Exploration of improvements or alternative solutions
 
+
+
+# Overview
+
+WASI 0.1 has seen wide adoption and particularly so in the embedded market place. There are over a million devices which currently run core-Wasm and WASI 0.1. These products produce revenue for the participating companies and for the individuals involved. As we look forward to WASI 0.2, 0.3, and the 1.0 release candidate we see a platform based on the component model with a lot of future potential, but which does not meet our needs today. At the time of writing we have no timeline for when WASI will meet the needs of the embedded market in the same way that WASI 0.1 currently does.
+
+What the embedded market needs is business continuity. We need some way to continue developing products on WASI 0.1 today. 
+
+A number of the E-SIG community have reached out across the WASI standards groups to ask for support for WASI 0.1, but we’ve repeatedly been told that WASI 0.1 was a preview, we shouldn’t have used it. With millions of devices in customers' hands today - that boat has sailed. We have colleagues whose families are being fed, and mortgages are being paid by products based on WASI 0.1. 
+
+It is important that we provide the business continuity which is missing. We will need to do this in a way which doesn’t hinder or prevent the maturity of the Component Model, but which allows it to mature. When it is ready and can meet the criteria for the embedded market then it should be possible for embedded runtimes to use components, where this makes sense for these products.
+
+At the same time WASI 0.1 is missing functionality which is critical to its continued use and the continued adoption of Wasm outside of the browser, this includes threading, socket handling, signal handling, exception handling and other items. It is important that these needs are addressed by the WASI 0.1 users. It is a benefit not just to the existing users of WAS 0.1, but also to new adopters of WebAssembly as a whole.
+
+This document attempts to address this problem. At times it feels like putting a square peg into a round hole. 
+
+The reader should see a gap analysis drawing out the gap between what the Component Model provides today and what is required. This gap analysis may seem harsh, but for business continuity it is important to call out what we have today and not what might be in the future. This is followed by a technical discussion about a layered approach, which attempts to address how the missing functionality needed in WASI 0.1 can be provided, and how this can be done in a way that doesn’t hamstring the future component model, but complements it. Finally, it looks at how components produced in the future could be made to execute on older core-wasm runtimes which cannot be updated to support the component model.
+
+In this way the document attempts to create a space for business continuity while allowing the Component Model to mature, and envisages a future where Components will reach a point of maturity in which they can be used in the embedded world.
+
+
+
 # Introduction
 
 The use of WebAssembly (Wasm) in embedded systems may seem unexpected at first, but the same principles that make it a compelling choice for the web, portability, security, and efficient execution, are equally valuable in the embedded space. These attributes have already driven significant adoption. Today, more than a million embedded devices run the WebAssembly Micro Runtime (WAMR) and WASI Preview 1 (original WASI). Several large companies, including Amazon, Sony, and Xiaomi, have embraced this technology, integrating it into their shipping products.
 
 As of early 2025, the WASI 0.2 release is available, with 0.3 expected in the coming months. An initial release candidate for WASI 1.0 is expected to be released by no later than mid-2026, at which point there is a desire to seperate the standardization process by the creation of a new W3C charter - [link with details]([Wasm CG Feburary 2025 - Google Slides](https://docs.google.com/presentation/d/1z0WXS5BLFtbVynM9xAyilecYskN1IKe9Dad1nDEmgU8/edit#slide=id.g33067d21cc1_0_321)).  However, based on current implementations and the publicly shared roadmap, WASI RC 1.0 will be largely unsuitable for embedded applications.
-
-
 
 A significant challenge is the **lack of a viable migration path for existing WASI Preview 1 runtimes**. The current WASI roadmap does not provide a way for early adopters to leverage new developments while maintaining their existing investments. At present, the only runtime to support WASI 0.2+ is Wasmtime with other runtimes adopting a cautious "wait and see" stance. Moreover, many existing runtimes—some of which power production systems—are difficult or even impossible to update. The lack of a commitment to maintain the WASI P1 SDK implies that once WASI 1.0 is released existing runtimes will lack a supported path for continued software development. By failing to account for these realities, WASI 1.0 risks alienating its early adopters, undermining the very community that pioneered WebAssembly’s adoption beyond the browser.
 
